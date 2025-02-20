@@ -1,63 +1,56 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const fileInput = document.getElementById('fileInput');
-    const fileName = document.getElementById('fileName');
-    const uploadContainer = document.getElementById('uploadContainer');
     const writingsGrid = document.getElementById('writingsGrid');
-
-    fileInput.addEventListener('change', handleFileUpload);
-    uploadContainer.addEventListener('dragover', handleDragOver);
-    uploadContainer.addEventListener('dragleave', handleDragLeave);
-    uploadContainer.addEventListener('drop', handleDrop);
-
-    function handleFileUpload(e) {
-        const file = e.target.files[0];
-        if (file) {
-            uploadFile(file);
+    
+    const pdfFiles = [
+        {
+            name: "Nueva Blockchain Club Website Article 1",
+            filename: "Nueva Blockchain Club _ Website Article 1.pdf"
+        },
+        {
+            name: "Nueva Blockchain Club Website Article 2",
+            filename: "Nueva Blockchain Club _ Website Article 2.pdf"
+        },
+        {
+            name: "Lie Groups with Applications in quantum mechanics",
+            filename: "Lie_Groups_with_Applications_in_quantum_mechanics.pdf"
+        },
+        {
+            name: "Elliptic Curve Cryptology",
+            filename: "elliptic_curve_cryptology.pdf"
+        },
+        {
+            name: "Interactive Proofs",
+            filename: "interactive_proofs.pdf"
+        },
+        {
+            name: "Fast Matrix Multiplication",
+            filename: "Fast_Matrix_Multiplication.pdf"
+        },
+        {
+            name: "Probabilistic Algorithms",
+            filename: "Probabilistic_Algorithms.pdf"
+        },
+        {
+            name: "Path Optimizations",
+            filename: "Path_Optimizations.pdf"
+        },
+        {
+            name: "Manifolds",
+            filename: "Manifolds.pdf"
+        },
+        {
+            name: "M3 2023 Team 16738",
+            filename: "M3_2023___Team_16738 (1).pdf"
         }
-    }
+    ];
 
-    function handleDragOver(e) {
-        e.preventDefault();
-        uploadContainer.classList.add('drag-over');
-    }
-
-    function handleDragLeave(e) {
-        e.preventDefault();
-        uploadContainer.classList.remove('drag-over');
-    }
-
-    function handleDrop(e) {
-        e.preventDefault();
-        uploadContainer.classList.remove('drag-over');
-        const file = e.dataTransfer.files[0];
-        if (file) {
-            uploadFile(file);
-        }
-    }
-
-    function uploadFile(file) {
-        if (file.type !== 'application/pdf') {
-            alert('Please upload a PDF file.');
-            return;
-        }
-
-        // Here you would typically send the file to a server
-        // For this example, we'll just display it client-side
-        displayUploadedFile(file);
-    }
-
-    function displayUploadedFile(file) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            const div = document.createElement('div');
-            div.className = 'writing-card';
-            div.innerHTML = `
-                <h3>${file.name}</h3>
-                <p>Uploaded on: ${new Date().toLocaleString()}</p>
-                <a href="${e.target.result}" target="_blank">View PDF</a>
-            `;
-            writingsGrid.appendChild(div);
-        }
-        reader.readAsDataURL(file);
-    }
+    pdfFiles.forEach(file => {
+        const div = document.createElement('div');
+        div.className = 'writing-card';
+        div.innerHTML = `
+            <h3>${file.name}</h3>
+            <a href="${file.filename}" target="_blank" class="pdf-link">View PDF</a>
+        `;
+        writingsGrid.appendChild(div);
+    });
 });
