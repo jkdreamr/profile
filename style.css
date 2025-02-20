@@ -23,7 +23,7 @@ body {
     padding-top: 80px;
 }
 
-/* Enhanced Header and Navigation */
+/* Header and Navigation */
 header {
     position: fixed;
     top: 0;
@@ -88,7 +88,7 @@ header.scrolled {
     text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
 }
 
-/* Enhanced Sections */
+/* Sections */
 main {
     padding: 0 2rem;
     max-width: 1200px;
@@ -111,7 +111,7 @@ section.visible {
     transform: translateY(0) rotateX(0);
 }
 
-/* Enhanced Typography */
+/* Typography */
 h2 {
     font-size: 2.5rem;
     margin-bottom: 3rem;
@@ -148,7 +148,7 @@ section.visible h2::after {
     transform: scaleX(1);
 }
 
-/* Enhanced Experience Items */
+/* Experience Items */
 .experience-item {
     margin-bottom: 3rem;
     padding: 2rem;
@@ -345,3 +345,17 @@ section.visible h2::after {
         padding: 1.5rem;
     }
 }
+
+/* Contact Section Styles */
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.1rem
