@@ -1,36 +1,62 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Smooth scroll for navigation
+    let lastScrollPosition = window.pageYOffset;
+    const header = document.querySelector('header');
+    
+    // Enhanced smooth scroll
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
             const target = document.querySelector(this.getAttribute('href'));
             if (target) {
+                const headerHeight = header.offsetHeight;
+                const targetPosition = target.offsetTop - headerHeight;
                 window.scrollTo({
-                    top: target.offsetTop,
+                    top: targetPosition,
                     behavior: 'smooth'
                 });
             }
         });
     });
 
-    // Intersection Observer for scroll animations
-    const observer = new IntersectionObserver((entries) => {
+    // Enhanced scroll handling for header
+    window.addEventListener('scroll', () => {
+        const currentScroll = window.pageYOffset;
+        if (currentScroll > lastScrollPosition && currentScroll > 100) {
+            header.classList.add('hidden');
+        } else {
+            header.classList.remove('hidden');
+        }
+        lastScrollPosition = currentScroll;
+    });
+
+    // Enhanced intersection observer
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '-50px 0px'
+    };
+
+    const sectionObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
+                
+                // Add slide-up effect to experience items
+                const items = entry.target.querySelectorAll('.experience-item');
+                items.forEach((item, index) => {
+                    setTimeout(() => {
+                        item.classList.add('slide-up');
+                    }, index * 200);
+                });
             }
         });
-    }, {
-        threshold: 0.1,
-        rootMargin: '-50px 0px'
-    });
+    }, observerOptions);
 
     // Observe all sections
     document.querySelectorAll('section').forEach(section => {
-        observer.observe(section);
+        sectionObserver.observe(section);
     });
 
-    // Initial check for visible sections
+    // Initial visibility check
     const checkInitialVisibility = () => {
         document.querySelectorAll('section').forEach(section => {
             const rect = section.getBoundingClientRect();
@@ -40,6 +66,5 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    // Run initial visibility check
     checkInitialVisibility();
 });
