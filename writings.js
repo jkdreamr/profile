@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
     const writingsGrid = document.getElementById('writingsGrid');
     
+    console.log('Writings script loaded');
+
     const pdfFiles = [
         {
             name: "Nueva Blockchain Club Website Article 1",
@@ -44,6 +46,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     ];
 
+    console.log('Number of PDF files:', pdfFiles.length);
+
     pdfFiles.forEach(file => {
         const div = document.createElement('div');
         div.className = 'writing-card';
@@ -52,5 +56,8 @@ document.addEventListener('DOMContentLoaded', () => {
             <a href="${file.filename}" target="_blank" class="pdf-link">View PDF</a>
         `;
         writingsGrid.appendChild(div);
+        console.log('Added writing card for:', file.name);
     });
+
+    console.log('Total writing cards added:', writingsGrid.children.length);
 });
