@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
             for (let i = 0; i < 20; i++) {
                 const point = document.createElement('div');
                 point.className = 'trail-point';
-                trail.appendChild(point);
+                trail.appendChild( point);
                 this.points.push({
                     x: 0, y: 0,
                     element: point
