@@ -168,7 +168,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Handle navigation to writings page
     document.querySelector('a[href="#writings"]').addEventListener('click', (e) => {
         e.preventDefault();
-        window.location.href = '/writings.html';
+        window.location.href = 'writings.html';
     });
 
     // Particle background effect
@@ -235,7 +235,4 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     new ParticleBackground();
-
-    // Initial visibility check
-    checkInitialVisibility();
 });
